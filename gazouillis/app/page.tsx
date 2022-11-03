@@ -8,7 +8,9 @@ const page = async() => {
   const tweets = await getData()
   console.log(tweets)
   return (
-    <div>page</div>
+    <div>
+      
+    </div>
   )
 }
 
