@@ -5,8 +5,8 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core'
 const SidebarTab = ({icon,text}:{icon:IconProp,text:string}) => {
   return (
     <div className='flex gap-x-5 items-center p-5 m-5 rounded-full hover:bg-gray-700'>
-      <FontAwesomeIcon icon={icon} className='w-10' />
-      <span className='text-2xl'>{text}</span>
+      <FontAwesomeIcon icon={icon} className='w-7' />
+      <span className='text-xl'>{text}</span>
     </div>
   )
 }

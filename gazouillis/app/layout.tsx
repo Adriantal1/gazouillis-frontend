@@ -11,9 +11,9 @@ export default function RootLayout({
       <head>
 
       </head>
-      <body>
+      <body className="flex bg-gray-800">
         <Sidebar/>
-        {children}
+        <div>{children}</div>
         </body>
     </html>
   )
