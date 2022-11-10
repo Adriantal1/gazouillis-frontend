@@ -1,11 +1,12 @@
 "use client"
 
+import { error } from 'console'
 import React, { createContext, FormEvent, SyntheticEvent, useState } from 'react'
 
 interface IAuthContext {
   tokens: string[] | null,
   user: string | null,
-  login: (e:SyntheticEvent<HTMLFormElement>) => void,
+  login: (e:React.FormEvent<HTMLFormElement>) => void,
   logout: () => void,
 }
 
@@ -22,16 +23,20 @@ export const AuthProvider = ({children}:{children:React.ReactNode}) => {
   const [tokens,setTokens] = useState<string[] | null>(null)
   const [user,setUser] = useState<string | null>(null)
 
-  const login = (e:SyntheticEvent<HTMLFormElement>) => {
+  const login = async(e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    console.log(e.currentTarget.elements[0].value)
-
-    // const data = await fetch("https://gazouillis-b.up.railway.app/users/get-tokens", {
-    //   method:"POST",
-    //   headers:{'Content-Type':'application/json'},
-    //   body:JSON.stringify({"email":e.target.email.value,"password":e.target.password.value})
-    // })
+    fetch("https://gazouillis-b.up.railway.app/users/get-tokens/", {
+      method:"POST",
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({"email":e.currentTarget.email.value,"password":e.currentTarget.password.value})
+    })
+    .then(response => response.json())
+    .then(data => {
+      setTokens(data)
+      setUser
+    })
+    .catch(error => console.log(error))
   }
 
   const logout = () => {
