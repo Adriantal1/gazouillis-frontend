@@ -9,7 +9,7 @@ const page = async() => {
   console.log(tweets)
   return (
     <div>
-
+      
     </div>
   )
 }
